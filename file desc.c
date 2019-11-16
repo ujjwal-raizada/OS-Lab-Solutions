@@ -16,6 +16,7 @@ int main() {
 	pid = fork();
 
 	if (pid == 0) {
+		printf("child 1\n");
 		dup2(pfd[1], 1);
 		close(pfd[0]);
 		close(pfd[1]);
@@ -24,6 +25,7 @@ int main() {
 	}
 	else {
 		if (fork() == 0) {
+			printf("child 2\n");
 			dup2(pfd[0], 0);
 			close(pfd[0]);
 			close(pfd[1]);
