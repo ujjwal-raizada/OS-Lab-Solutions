@@ -16,10 +16,14 @@ void handler(void *ptr) {
 	// critical section starts
 	sleep(2);
 	printf("critical section start. thread: %d\n", x);
+	sleep(2);
 	printf("thread %d: counter value: %d\n", x, counter);
+	sleep(2);
 	counter++;
 	printf("thread %d: new counter value %d\n", x, counter);
+	sleep(2);
 	printf("thread %d: exiting.\n", x);
+	sleep(2);
 
 	sem_post(&sem);
 	pthread_exit(0);
@@ -33,7 +37,7 @@ int main() {
 	i[0] = 0;
 	i[1] = 1;
 
-	sem_init(&sem, 0, 1);
+	sem_init(&sem, 0, 2);
 	pthread_create(&t1, NULL, (void *)&handler, (void *)&i[0]);
 	pthread_create(&t2, NULL, (void *)&handler, (void *)&i[1]);
 
